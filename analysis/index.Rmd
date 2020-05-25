@@ -7,3 +7,7 @@ output:
 ---
 
 start working 
+
+## Sample data
+
+[here](sample-data.html) is basic information about the data
