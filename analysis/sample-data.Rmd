@@ -5,5 +5,15 @@ date: "2020-05-25"
 output: workflowr::wflow_html
 ---
 
+```{r,echo=F}
+sample.data=readRDS("/Users/han24/Documents/Research/mirage-alzheimer/GaoData-04292020/top_CMC_BRV.rds",refhook = NULL)  # load RDS data
+```
 
+```{r,echo=T}
+name.list=names(sample.data)
+name.list
+length(sample.data$y); head(sample.data$y) # no. samples 
+dim(sample.data$X); head(sample.data$X)
+dim(sample.data$SYTL2); head(sample.data$SYTL2) # SYTL2 gene 
 
+```
