@@ -1,13 +1,61 @@
 ---
 title: "Home"
-site: workflowr::wflow_site
 output:
-  workflowr::wflow_html:
+  html_document:
     toc: false
 ---
 
-start working 
+
+```{r, echo=F}
+rm(list=ls())
+set.seed(123)
+library(tidyverse)
+```
+
+## preliminary analsyis for grant 
+
+```{r, echo=F}
+snp_forgao=as_tibble(read.table("/Users/han24/Documents/Research/mirage-alzheimer/GaoDataforgrant-10312020/snp_forgao.txt", header=F))
+snp_forgao
+top_CMC_BRV=as_tibble(read.table("/Users/han24/Documents/Research/mirage-alzheimer/GaoDataforgrant-10312020/top_CMC_BRV.txt", header=T))
+top_CMC_BRV
+top_CMC_BRVpheno=as_tibble(read.table("/Users/han24/Documents/Research/mirage-alzheimer/GaoDataforgrant-10312020/top_CMC_BRVpheno.txt", header=T))
+top_CMC_BRVpheno
+top_CMC_BRV_and_pheno=full_join(top_CMC_BRV, top_CMC_BRVpheno)
+snp=colnames(top_CMC_BRV_and_pheno)[3:285]  # extract all snps 
+snp_count=matrix(nrow=length(snp), ncol=2)
+for (i in 1:length(snp))
+{
+  snp_count[i,1]=top_CMC_BRV_and_pheno %>% select(snp[i], AD) %>% filter(AD=="1") %>% select(snp[i]) %>% sum(na.rm=T) # count snp's in case 
+  snp_count[i,2]=top_CMC_BRV_and_pheno %>% select(snp[i], AD) %>% filter(AD=="0") %>% select(snp[i]) %>% sum(na.rm=T) # count snp's in control
+}
+common_snp=intersect(snp_forgao$V1, snp)
+snp_forgao_rename=snp_forgao %>% rename(snp=V1, Gene=V2) %>% filter(snp %in% common_snp)
+snp_count_summary=tibble(snp=snp, AD_yes=snp_count[,1], AD_no=snp_count[,2]) %>% filter(snp %in% common_snp)
+snp_count_combine=full_join(snp_forgao_rename, snp_count_summary)
+
+```
+
+
+```{r, echo=F}
+#library("devtools")
+#install.packages("Rtools")
+#install_github('xinhe-lab/mirage')
+library(mirage)
+group_index=rep(1, nrow(snp_count_combine))
+gene_set=snp_count_combine%>%add_column(group_index=group_index)
+no_case=sum(top_CMC_BRVpheno$AD==1); no_control=sum(top_CMC_BRVpheno$AD==0)
+mirage_result=mirage(data.frame(gene_set),n1=no_case, n2=no_control)
+para_est=matrix(nrow=2, ncol=2)
+rownames(para_est)=c("delta", "eta"); colnames(para_est)=c("estimate", "pvalue")
+para_est[1,]=c(mirage_result$delta.est, mirage_result$delta.pvalue)
+para_est[2,]=c(mirage_result$eta.est, mirage_result$eta.pvalue)
+para_est
+```
 
 ## Sample data
 
 [here](sample-data.html) is basic information about the data
+
+
+

@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -266,6 +269,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -339,10 +437,10 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-05-25
+<strong>Last updated:</strong> 2020-11-07
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>mirage-alzheimer/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -370,20 +468,70 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhan16miragealzheimertree85c898c224f6a4c91f7910ee602e0d2049485332targetblank85c898ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/han16/mirage-alzheimer/tree/85c898c224f6a4c91f7910ee602e0d2049485332" target="_blank">85c898c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhan16miragealzheimertree85c898c224f6a4c91f7910ee602e0d2049485332targetblank85c898ca" class="panel-collapse collapse">
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200525code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200525)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20200525code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20200525)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhan16miragealzheimertreeb5659940fdc6cb079cc4965c815bae6b3b1fd5b3targetblankb565994a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/han16/mirage-alzheimer/tree/b5659940fdc6cb079cc4965c815bae6b3b1fd5b3" target="_blank">b565994</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhan16miragealzheimertreeb5659940fdc6cb079cc4965c815bae6b3b1fd5b3targetblankb565994a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
-Untracked files:
-    Untracked:  analysis/sample-data.Rmd
+Ignored files:
+    Ignored:    .Rhistory
 
 Unstaged changes:
+    Modified:   analysis/about.Rmd
     Modified:   analysis/index.Rmd
+    Modified:   analysis/sample-data.Rmd
 
 </code></pre>
 <p>
@@ -422,6 +570,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/han16/mirage-alzheimer/blob/90c164e04a3ef0252b8137d059e4031074bf3a5f/analysis/index.Rmd" target="_blank">90c164e</a>
+</td>
+<td>
+han16
+</td>
+<td>
+2020-05-25
+</td>
+<td>
+5/25/2020
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/han16/mirage-alzheimer/90c164e04a3ef0252b8137d059e4031074bf3a5f/docs/index.html" target="_blank">90c164e</a>
+</td>
+<td>
+han16
+</td>
+<td>
+2020-05-25
+</td>
+<td>
+5/25/2020
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -480,10 +662,147 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>start working</p>
+<pre><code>── Attaching packages ────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>✔ ggplot2 3.1.0       ✔ purrr   0.3.0  
+✔ tibble  2.0.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.2       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.3.0  </code></pre>
+<pre><code>Warning: package &#39;tibble&#39; was built under R version 3.5.2</code></pre>
+<pre><code>Warning: package &#39;purrr&#39; was built under R version 3.5.2</code></pre>
+<pre><code>Warning: package &#39;stringr&#39; was built under R version 3.5.2</code></pre>
+<pre><code>── Conflicts ───────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div id="preliminary-analsyis-for-grant" class="section level2">
+<h2>preliminary analsyis for grant</h2>
+<pre><code># A tibble: 282 x 2
+   V1        V2   
+   &lt;fct&gt;     &lt;fct&gt;
+ 1 exm945633 SYTL2
+ 2 exm945634 SYTL2
+ 3 exm945659 SYTL2
+ 4 exm945661 SYTL2
+ 5 exm945663 SYTL2
+ 6 exm945668 SYTL2
+ 7 exm945670 SYTL2
+ 8 exm945673 SYTL2
+ 9 exm945675 SYTL2
+10 exm945682 SYTL2
+# … with 272 more rows</code></pre>
+<pre><code># A tibble: 14,336 x 285
+     FID IID   exm145169 exm2232392 exm2275541 exm145179 exm145181
+   &lt;int&gt; &lt;fct&gt;     &lt;int&gt;      &lt;int&gt;      &lt;int&gt;     &lt;int&gt;     &lt;int&gt;
+ 1     0 ACT-…         0          0          0         0         1
+ 2     0 ACT-…         0          0          0         0         0
+ 3     0 ACT-…         0          0          0         0         0
+ 4     0 ACT-…         0          0          0         0         0
+ 5     0 ACT-…         0          0          0         0         0
+ 6     0 ACT-…         0          0          0         0         0
+ 7     0 ACT-…         0          0          0         0         0
+ 8     0 ACT-…         0          0          0         0         0
+ 9     0 ACT-…         0          0          0         0         0
+10     0 ACT-…         0          0          0         0         0
+# … with 14,326 more rows, and 278 more variables: exm145192 &lt;int&gt;,
+#   exm145213 &lt;int&gt;, exm145214 &lt;int&gt;, exm145219 &lt;int&gt;, exm145223 &lt;int&gt;,
+#   exm2237302 &lt;int&gt;, exm276762 &lt;int&gt;, exm2273875 &lt;int&gt;, exm276774 &lt;int&gt;,
+#   exm276775 &lt;int&gt;, exm276776 &lt;int&gt;, exm276779 &lt;int&gt;, exm276789 &lt;int&gt;,
+#   exm276791 &lt;int&gt;, exm276795 &lt;int&gt;, exm276799 &lt;int&gt;, exm276803 &lt;int&gt;,
+#   exm276804 &lt;int&gt;, exm.rs6704644 &lt;int&gt;, exm276817 &lt;int&gt;,
+#   exm276818 &lt;int&gt;, exm276838 &lt;int&gt;, exm276841 &lt;int&gt;, exm276843 &lt;int&gt;,
+#   exm276844 &lt;int&gt;, exm276845 &lt;int&gt;, exm276846 &lt;int&gt;, exm276851 &lt;int&gt;,
+#   exm276855 &lt;int&gt;, exm276857 &lt;int&gt;, exm276859 &lt;int&gt;, exm276869 &lt;int&gt;,
+#   exm276873 &lt;int&gt;, exm276877 &lt;int&gt;, exm276878 &lt;int&gt;, exm276895 &lt;int&gt;,
+#   exm276906 &lt;int&gt;, exm.rs3132451 &lt;int&gt;, exm531181 &lt;int&gt;,
+#   exm531186 &lt;int&gt;, exm531187 &lt;int&gt;, exm531191 &lt;int&gt;, exm2270462 &lt;int&gt;,
+#   exm531199 &lt;int&gt;, exm531208 &lt;int&gt;, exm2120941 &lt;int&gt;,
+#   exm.rs2857597 &lt;int&gt;, exm.rs2857697 &lt;int&gt;, exm2246192 &lt;int&gt;,
+#   exm638602 &lt;int&gt;, exm638606 &lt;int&gt;, exm638608 &lt;int&gt;, exm638617 &lt;int&gt;,
+#   exm638620 &lt;int&gt;, exm638635 &lt;int&gt;, exm2158566 &lt;int&gt;, exm2266552 &lt;int&gt;,
+#   exm638644 &lt;int&gt;, exm638645 &lt;int&gt;, exm638648 &lt;int&gt;, exm638652 &lt;int&gt;,
+#   exm643565 &lt;int&gt;, exm643587 &lt;int&gt;, exm643590 &lt;int&gt;, exm643598 &lt;int&gt;,
+#   exm643600 &lt;int&gt;, exm643602 &lt;int&gt;, exm2244631 &lt;int&gt;, exm2244632 &lt;int&gt;,
+#   exm643627 &lt;int&gt;, exm643628 &lt;int&gt;, exm643640 &lt;int&gt;, exm643642 &lt;int&gt;,
+#   exm643644 &lt;int&gt;, exm643650 &lt;int&gt;, exm643697 &lt;int&gt;, exm643763 &lt;int&gt;,
+#   exm643829 &lt;int&gt;, exm2264245 &lt;int&gt;, exm643857 &lt;int&gt;, exm643858 &lt;int&gt;,
+#   exm643860 &lt;int&gt;, exm643862 &lt;int&gt;, exm643873 &lt;int&gt;, exm643883 &lt;int&gt;,
+#   exm2244687 &lt;int&gt;, exm691554 &lt;int&gt;, exm691558 &lt;int&gt;, exm691562 &lt;int&gt;,
+#   exm691569 &lt;int&gt;, exm691571 &lt;int&gt;, exm691577 &lt;int&gt;, exm2274304 &lt;int&gt;,
+#   exm691598 &lt;int&gt;, exm2170506 &lt;int&gt;, exm691599 &lt;int&gt;, exm691609 &lt;int&gt;,
+#   exm691617 &lt;int&gt;, exm691623 &lt;int&gt;, exm691630 &lt;int&gt;, …</code></pre>
+<pre><code># A tibble: 14,336 x 8
+     FID IID             AD   SEX   AGE      PC1      PC2      PC3
+   &lt;int&gt; &lt;fct&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1     0 ACT-ACT90001     1     0    88 -0.00821  0.00114 -0.00728
+ 2     0 ACT-ACT90008     1     1    86 -0.00064  0.0054   0.0206 
+ 3     0 ACT-ACT90011     0     1    78 -0.00797 -0.00613  0.0167 
+ 4     0 ACT-ACT90013     0     0    75 -0.0102   0.00531  0.0162 
+ 5     0 ACT-ACT90017     0     0    85  0.0946  -0.0265   0.0237 
+ 6     0 ACT-ACT90020     0     1    89 -0.00383  0.00477  0.00214
+ 7     0 ACT-ACT90023     0     1    90 -0.00741  0.00001  0.00782
+ 8     0 ACT-ACT90027     0     0    74 -0.00935 -0.0151   0.0223 
+ 9     0 ACT-ACT90032     0     1    85  0.0263   0.0347  -0.00295
+10     0 ACT-ACT90033     0     1    80 -0.00367 -0.00449 -0.0214 
+# … with 14,326 more rows</code></pre>
+<pre><code>Joining, by = c(&quot;FID&quot;, &quot;IID&quot;)</code></pre>
+<pre><code>Joining, by = &quot;snp&quot;</code></pre>
+<pre><code>Warning: Column `snp` joining factor and character vector, coercing into
+character vector</code></pre>
+<pre><code>Computing gene level LRT statistics and p-values ...
+Computing LRT statistics and p-values by categories ...</code></pre>
+<pre><code>          estimate pvalue
+delta 2.112828e-02      1
+eta   1.844532e-05      1</code></pre>
+</div>
 <div id="sample-data" class="section level2">
 <h2>Sample data</h2>
 <p><a href="sample-data.html">here</a> is basic information about the data</p>
+<br> <br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.5.1 (2018-07-02)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS High Sierra 10.13.6
+
+Matrix products: default
+BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] mirage_0.1.0.0  forcats_0.3.0   stringr_1.4.0   dplyr_0.8.0.1  
+ [5] purrr_0.3.0     readr_1.3.1     tidyr_0.8.2     tibble_2.0.1   
+ [9] ggplot2_3.1.0   tidyverse_1.2.1
+
+loaded via a namespace (and not attached):
+ [1] progress_1.2.0    tidyselect_0.2.5  xfun_0.4         
+ [4] haven_2.0.0       lattice_0.20-38   colorspace_1.4-0 
+ [7] generics_0.0.2    htmltools_0.3.6   yaml_2.2.0       
+[10] utf8_1.1.4        rlang_0.4.5       pillar_1.3.1     
+[13] glue_1.3.0        withr_2.1.2       modelr_0.1.3     
+[16] readxl_1.3.0      plyr_1.8.4        munsell_0.5.0    
+[19] gtable_0.2.0      workflowr_1.2.0   cellranger_1.1.0 
+[22] rvest_0.3.2       evaluate_0.13     knitr_1.21       
+[25] fansi_0.4.0       broom_0.5.1       Rcpp_1.0.0       
+[28] scales_1.0.0      backports_1.1.3   jsonlite_1.6     
+[31] fs_1.2.6          hms_0.4.2         digest_0.6.18    
+[34] stringi_1.3.1     grid_3.5.1        rprojroot_1.3-2  
+[37] cli_1.0.1         tools_3.5.1       magrittr_1.5     
+[40] lazyeval_0.2.1    crayon_1.3.4      whisker_0.3-2    
+[43] pkgconfig_2.0.2   prettyunits_1.0.2 xml2_1.2.0       
+[46] lubridate_1.7.4   assertthat_0.2.0  rmarkdown_1.11   
+[49] httr_1.4.0        rstudioapi_0.9.0  R6_2.4.0         
+[52] nlme_3.1-137      git2r_0.24.0      compiler_3.5.1   </code></pre>
+</div>
 </div>
 
 
@@ -500,6 +819,8 @@ footer is added to webpages before the MathJax javascript. -->
 </script>
 
 
+</div>
+</div>
 
 </div>
 

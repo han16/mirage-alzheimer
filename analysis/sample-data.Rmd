@@ -15,5 +15,5 @@ name.list
 length(sample.data$y); head(sample.data$y) # no. samples 
 dim(sample.data$X); head(sample.data$X)
 dim(sample.data$SYTL2); head(sample.data$SYTL2) # SYTL2 gene 
-
+dim(sample.data$PICALM); head(sample.data$PICALM) # PICALM gene 
 ```
