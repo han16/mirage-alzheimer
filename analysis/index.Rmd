@@ -6,15 +6,19 @@ output:
 ---
 
 
-```{r, echo=F}
+```{r, echo=F,warning=F}
 rm(list=ls())
 set.seed(123)
 library(tidyverse)
 ```
 
+* [Power analysis](power-analysis.html) 
+
+
+
 ## preliminary analsyis for grant 
 
-```{r, echo=F}
+```{r, echo=F, eval=F}
 snp_forgao=as_tibble(read.table("/Users/han24/Documents/Research/mirage-alzheimer/GaoDataforgrant-10312020/snp_forgao.txt", header=F))
 snp_forgao
 top_CMC_BRV=as_tibble(read.table("/Users/han24/Documents/Research/mirage-alzheimer/GaoDataforgrant-10312020/top_CMC_BRV.txt", header=T))
@@ -37,7 +41,7 @@ snp_count_combine=full_join(snp_forgao_rename, snp_count_summary)
 ```
 
 
-```{r, echo=F}
+```{r, echo=F, eval=F}
 #library("devtools")
 #install.packages("Rtools")
 #install_github('xinhe-lab/mirage')
