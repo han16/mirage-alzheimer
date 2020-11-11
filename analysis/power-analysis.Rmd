@@ -43,6 +43,13 @@ roc_single_run=data.frame(D=Ui, m=c(mirage_pvalue,fisher_pvalue,skato_pvalue, -m
 p1.basic=ggplot(roc_single_run, aes(d = D, m = m, color=method), size=2) + 
   geom_roc(increasing=F, n.cuts=0)+
   style_roc(theme = theme_grey)
+######################################################################################
+############################# use this for Gao's proposal 
+#method=rep(c("MIRAGE", "Burden"), each=num_run)
+#roc_single_run=data.frame(D=Ui, m=c(-log(mirage_pvalue, base=10),-log(fisher_pvalue, base=10), -log(skato_pvalue, base=10)), method=method)
+#roc_single_run=data.frame(D=Ui, m=c(mirage_pvalue,fisher_pvalue), method=method)
+#write.csv(roc_single_run, file="C://Shengtong//Research//mirage-alzheimer//mirage-alzheimer//output//power-calculation//coding.csv")
+########################
 #
 #p1=p1.basic+
 #  annotate("text", x =rep(0.8, 4), y = c(0.02,0.08, 0.14, 0.2), 
@@ -81,7 +88,11 @@ roc_single_run=data.frame(D=Ui, m=c(mirage_pvalue,fisher_pvalue,skato_pvalue, -m
 p1.basic=ggplot(roc_single_run, aes(d = D, m = m, color=method), size=2) + 
   geom_roc(increasing=F, n.cuts=0)+
   style_roc(theme = theme_grey)
-#
+######################################## this is for Gao's proposal############### 
+#method=rep(c("MIRAGE", "Burden"), each=num_run)
+#roc_single_run=data.frame(D=Ui, m=c(mirage_pvalue,fisher_pvalue), method=method)
+#write.csv(roc_single_run, file="C://Shengtong//Research//mirage-alzheimer//mirage-alzheimer//output//power-calculation//noncoding.csv")
+##########################################################
 #p1=p1.basic+
 #  annotate("text", x =rep(0.8, 4), y = c(0.02,0.08, 0.14, 0.2), 
 #           label = paste(c("Burden:AUC=", "MIRAGE-BF:AUC=", "MIRAGE-LRT:AUC=", "SKATO:AUC="), #round(calc_auc(p1.basic)$AUC, 2)), size=1.5)+
@@ -96,16 +107,64 @@ g2=ggplot(noncoding_auc, aes(x=Annotation, y=AUC, fill=Annotation)) +
   geom_bar(stat="identity")+
   ylim(c(0,1))+
   xlab("Noncoding")+ylab("")+
+  guides(fill=FALSE)+  # remove legend 
 theme_classic()
 g2
 
-grid.arrange(g1, g2,  nrow=1)
+
+
+############################# coding+non-coding #############
+rm("Ui", "mirage_pvalue", "mirage_BF", "fisher_pvalue", "skato_pvalue")
+load("C://Shengtong//Research//mirage-alzheimer//mirage-alzheimer//output//power-calculation//6methods_delta0.2_gammamean335.RData")
+i=1
+Ui=Gene.Risk.Status[[i]]
+mirage_pvalue=MIRAGE.pvalue[[i]]
+mirage_BF=MIRAGE.BF[[i]]
+fisher_pvalue=Fisher.pvalue[[i]]
+skato_pvalue=SKATO.pvalue[[i]]
+
+num_run=length(mirage_pvalue)
+
+
+method=rep(c("MIRAGE-LRT", "Burden", "SKATO", "MIRAGE-BF"), each=num_run)
+#roc_single_run=data.frame(D=Ui, m=c(-log(mirage_pvalue, base=10),-log(fisher_pvalue, base=10), -log(skato_pvalue, base=10)), method=method)
+roc_single_run=data.frame(D=Ui, m=c(mirage_pvalue,fisher_pvalue,skato_pvalue, -mirage_BF), method=method)
+p1.basic=ggplot(roc_single_run, aes(d = D, m = m, color=method), size=2) + 
+  geom_roc(increasing=F, n.cuts=0)+
+  style_roc(theme = theme_grey)
+#
+######################################## this is for Gao's proposal############### 
+method=rep(c("MIRAGE", "Burden"), each=num_run)
+roc_single_run=data.frame(D=Ui, m=c(mirage_pvalue,fisher_pvalue), method=method)
+write.csv(roc_single_run, file="C://Shengtong//Research//mirage-alzheimer//mirage-alzheimer//output//power-calculation//coding+noncoding.csv")
+###################################################################################
+#p1=p1.basic+
+#  annotate("text", x =rep(0.8, 4), y = c(0.02,0.08, 0.14, 0.2), 
+#           label = paste(c("Burden:AUC=", "MIRAGE-BF:AUC=", "MIRAGE-LRT:AUC=", "SKATO:AUC="), #round(calc_auc(p1.basic)$AUC, 2)), size=1.5)+
+#  ggtitle(expression(paste(delta, "=0.1")))+
+#theme(plot.title = element_text(hjust = 0.5, size=10))+  #center the title 
+# theme(axis.text.x= element_text(size=6))+  # custmorize the axis tick size 
+#theme(axis.text.y= element_text(size=6))+
+#  theme(axis.text = element_text(size = 1))
+auc=round(calc_auc(p1.basic)$AUC, 2)
+coding_noncoding_auc=tibble(AUC=c(0.46, 0.99), Annotation=c("No", "Yes"))
+g3=ggplot(coding_noncoding_auc, aes(x=Annotation, y=AUC, fill=Annotation)) +
+  geom_bar(stat="identity")+
+  ylim(c(0,1))+
+  xlab("Noncoding")+ylab("")+
+theme_classic()
+g3
+
+grid.arrange(g1, g2, g3,  nrow=1)
 
 ```
 
 Coding: sample size, $N1=N0=20,000$; 100 genes (regions) and $10\%$ are risk genes; each risk gene has 100 variants in 3 variant groups, $60\%$ are in the first group with RR $\bar{\gamma}=3$ and the risk variants proportion is  $\eta_1=5\%$, $30\%$ in the second group with $\bar{\gamma}=3$ with $\eta_2=20\%$ and the last $10\%$ has $\bar{\gamma}=5$ with $\eta_3=50\%$. 
 
 Noncoding:  sample size, $N1=N0=20,000$; 100 regions and $5\%$ are risk regions; each risk region has 100 variants in 3 variant groups, $60\%$ are in the first group with RR $\bar{\gamma}=1$ and the risk variants proportion is  $\eta_1=5\%$, $30\%$ in the second group with $\bar{\gamma}=1$ with $\eta_2=20\%$ and the last $10\%$ has $\bar{\gamma}=3$ with $\eta_3=50\%$.
+
+
+Coding+noncoding: sample size, $N1=N0=20,000$; 100 genes (regions) and $20\%$ are risk genes; each risk gene has 100 variants in 3 variant groups, $60\%$ are in the first group with RR $\bar{\gamma}=3$ and the risk variants proportion is  $\eta_1=5\%$, $30\%$ in the second group with $\bar{\gamma}=3$ with $\eta_2=20\%$ and the last $10\%$ has $\bar{\gamma}=5$ with $\eta_3=50\%$. 
 
 
 Annotation: "Yes" represents using mirage with annotations and "No" is for burden test without annotations.  

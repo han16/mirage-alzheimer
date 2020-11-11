@@ -442,7 +442,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-11-09
+<strong>Last updated:</strong> 2020-11-10
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
@@ -466,7 +466,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -551,10 +551,42 @@ output/power-calculation/6methods_delta0.1_gammamean335.RData
 </tr>
 <tr>
 <td style="text-align:left;">
+C://Shengtong//Research//mirage-alzheimer//mirage-alzheimer//output//power-calculation//coding.csv
+</td>
+<td style="text-align:left;">
+output/power-calculation/coding.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 C://Shengtong//Research//mirage-alzheimer//mirage-alzheimer//output//power-calculation//6methods_delta0.05_gammamean113.RData
 </td>
 <td style="text-align:left;">
 output/power-calculation/6methods_delta0.05_gammamean113.RData
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C://Shengtong//Research//mirage-alzheimer//mirage-alzheimer//output//power-calculation//noncoding.csv
+</td>
+<td style="text-align:left;">
+output/power-calculation/noncoding.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C://Shengtong//Research//mirage-alzheimer//mirage-alzheimer//output//power-calculation//6methods_delta0.2_gammamean335.RData
+</td>
+<td style="text-align:left;">
+output/power-calculation/6methods_delta0.2_gammamean335.RData
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C://Shengtong//Research//mirage-alzheimer//mirage-alzheimer//output//power-calculation//coding+noncoding.csv
+</td>
+<td style="text-align:left;">
+output/power-calculation/coding+noncoding.csv
 </td>
 </tr>
 </tbody>
@@ -565,16 +597,16 @@ output/power-calculation/6methods_delta0.05_gammamean113.RData
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhan16miragealzheimertreea6e7391cafc060aea9faa46495052cf9e5e197b4targetblanka6e7391a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/han16/mirage-alzheimer/tree/a6e7391cafc060aea9faa46495052cf9e5e197b4" target="_blank">a6e7391</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomhan16miragealzheimertree53d232b3a10135283679448e53f68fcff49d66e3targetblank53d232ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/han16/mirage-alzheimer/tree/53d232b3a10135283679448e53f68fcff49d66e3" target="_blank">53d232b</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomhan16miragealzheimertreea6e7391cafc060aea9faa46495052cf9e5e197b4targetblanka6e7391a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomhan16miragealzheimertree53d232b3a10135283679448e53f68fcff49d66e3targetblank53d232ba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/han16/mirage-alzheimer/tree/a6e7391cafc060aea9faa46495052cf9e5e197b4" target="_blank">a6e7391</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/han16/mirage-alzheimer/tree/53d232b3a10135283679448e53f68fcff49d66e3" target="_blank">53d232b</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -584,11 +616,13 @@ Ignored files:
     Ignored:    analysis/figure/
 
 Untracked files:
-    Untracked:  analysis/power-analysis.Rmd
-    Untracked:  output/power-calculation/
+    Untracked:  output/power-calculation/6methods_delta0.2_gammamean335.RData
+    Untracked:  output/power-calculation/coding+noncoding.csv
+    Untracked:  output/power-calculation/coding.csv
+    Untracked:  output/power-calculation/noncoding.csv
 
 Unstaged changes:
-    Modified:   analysis/index.Rmd
+    Modified:   analysis/power-analysis.Rmd
 
 </code></pre>
 <p>
@@ -601,9 +635,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/power-analysis.Rmd</code>) and HTML (<code>docs/power-analysis.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/han16/mirage-alzheimer/blob/53d232b3a10135283679448e53f68fcff49d66e3/analysis/power-analysis.Rmd" target="_blank">53d232b</a>
+</td>
+<td>
+Shengtong
+</td>
+<td>
+2020-11-09
+</td>
+<td>
+11/9/2020
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/han16/mirage-alzheimer/53d232b3a10135283679448e53f68fcff49d66e3/docs/power-analysis.html" target="_blank">53d232b</a>
+</td>
+<td>
+Shengtong
+</td>
+<td>
+2020-11-09
+</td>
+<td>
+11/9/2020
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -640,9 +734,10 @@ Attaching package: &#39;cowplot&#39;</code></pre>
 &quot;skato_pvalue&quot;): object &#39;fisher_pvalue&#39; not found</code></pre>
 <pre><code>Warning in rm(&quot;Ui&quot;, &quot;mirage_pvalue&quot;, &quot;mirage_BF&quot;, &quot;fisher_pvalue&quot;,
 &quot;skato_pvalue&quot;): object &#39;skato_pvalue&#39; not found</code></pre>
-<p><img src="figure/power-analysis.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/power-analysis.Rmd/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/power-analysis.Rmd/unnamed-chunk-3-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/power-analysis.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/power-analysis.Rmd/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/power-analysis.Rmd/unnamed-chunk-3-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/power-analysis.Rmd/unnamed-chunk-3-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Coding: sample size, <span class="math inline">\(N1=N0=20,000\)</span>; 100 genes (regions) and <span class="math inline">\(10\%\)</span> are risk genes; each risk gene has 100 variants in 3 variant groups, <span class="math inline">\(60\%\)</span> are in the first group with RR <span class="math inline">\(\bar{\gamma}=3\)</span> and the risk variants proportion is <span class="math inline">\(\eta_1=5\%\)</span>, <span class="math inline">\(30\%\)</span> in the second group with <span class="math inline">\(\bar{\gamma}=3\)</span> with <span class="math inline">\(\eta_2=20\%\)</span> and the last <span class="math inline">\(10\%\)</span> has <span class="math inline">\(\bar{\gamma}=5\)</span> with <span class="math inline">\(\eta_3=50\%\)</span>.</p>
 <p>Noncoding: sample size, <span class="math inline">\(N1=N0=20,000\)</span>; 100 regions and <span class="math inline">\(5\%\)</span> are risk regions; each risk region has 100 variants in 3 variant groups, <span class="math inline">\(60\%\)</span> are in the first group with RR <span class="math inline">\(\bar{\gamma}=1\)</span> and the risk variants proportion is <span class="math inline">\(\eta_1=5\%\)</span>, <span class="math inline">\(30\%\)</span> in the second group with <span class="math inline">\(\bar{\gamma}=1\)</span> with <span class="math inline">\(\eta_2=20\%\)</span> and the last <span class="math inline">\(10\%\)</span> has <span class="math inline">\(\bar{\gamma}=3\)</span> with <span class="math inline">\(\eta_3=50\%\)</span>.</p>
+<p>Coding+noncoding: sample size, <span class="math inline">\(N1=N0=20,000\)</span>; 100 genes (regions) and <span class="math inline">\(20\%\)</span> are risk genes; each risk gene has 100 variants in 3 variant groups, <span class="math inline">\(60\%\)</span> are in the first group with RR <span class="math inline">\(\bar{\gamma}=3\)</span> and the risk variants proportion is <span class="math inline">\(\eta_1=5\%\)</span>, <span class="math inline">\(30\%\)</span> in the second group with <span class="math inline">\(\bar{\gamma}=3\)</span> with <span class="math inline">\(\eta_2=20\%\)</span> and the last <span class="math inline">\(10\%\)</span> has <span class="math inline">\(\bar{\gamma}=5\)</span> with <span class="math inline">\(\eta_3=50\%\)</span>.</p>
 <p>Annotation: “Yes” represents using mirage with annotations and “No” is for burden test without annotations.</p>
 <br>
 <p>
@@ -681,17 +776,17 @@ loaded via a namespace (and not attached):
  [5] rprojroot_1.3-2  digest_0.6.19    R6_2.4.1         cellranger_1.1.0
  [9] plyr_1.8.4       backports_1.1.4  reprex_0.3.0     evaluate_0.13   
 [13] httr_1.4.1       highr_0.8        pillar_1.4.4     rlang_0.4.6     
-[17] readxl_1.3.1     rstudioapi_0.10  blob_1.2.1       rmarkdown_1.13  
-[21] labeling_0.3     munsell_0.5.0    broom_0.5.2      compiler_3.6.0  
-[25] httpuv_1.5.1     modelr_0.1.8     xfun_0.7         pkgconfig_2.0.3 
-[29] htmltools_0.3.6  tidyselect_1.1.0 workflowr_1.6.2  crayon_1.3.4    
-[33] dbplyr_1.4.4     withr_2.1.2      later_0.8.0      nlme_3.1-139    
-[37] jsonlite_1.6     gtable_0.3.0     lifecycle_0.2.0  DBI_1.0.0       
-[41] git2r_0.26.1     magrittr_1.5     scales_1.0.0     cli_1.1.0       
-[45] stringi_1.4.3    fs_1.3.1         promises_1.0.1   xml2_1.3.2      
-[49] ellipsis_0.3.0   generics_0.0.2   vctrs_0.3.0      tools_3.6.0     
-[53] glue_1.4.1       hms_0.5.3        yaml_2.2.0       colorspace_1.4-1
-[57] rvest_0.3.5      knitr_1.23       haven_2.3.1     </code></pre>
+[17] readxl_1.3.1     rstudioapi_0.10  whisker_0.3-2    blob_1.2.1      
+[21] rmarkdown_1.13   labeling_0.3     munsell_0.5.0    broom_0.5.2     
+[25] compiler_3.6.0   httpuv_1.5.1     modelr_0.1.8     xfun_0.7        
+[29] pkgconfig_2.0.3  htmltools_0.3.6  tidyselect_1.1.0 workflowr_1.6.2 
+[33] crayon_1.3.4     dbplyr_1.4.4     withr_2.1.2      later_0.8.0     
+[37] nlme_3.1-139     jsonlite_1.6     gtable_0.3.0     lifecycle_0.2.0 
+[41] DBI_1.0.0        git2r_0.26.1     magrittr_1.5     scales_1.0.0    
+[45] cli_1.1.0        stringi_1.4.3    fs_1.3.1         promises_1.0.1  
+[49] xml2_1.3.2       ellipsis_0.3.0   generics_0.0.2   vctrs_0.3.0     
+[53] tools_3.6.0      glue_1.4.1       hms_0.5.3        yaml_2.2.0      
+[57] colorspace_1.4-1 rvest_0.3.5      knitr_1.23       haven_2.3.1     </code></pre>
 </div>
 
 
